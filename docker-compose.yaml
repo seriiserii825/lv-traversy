@@ -1,0 +1,71 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+  nginx:
+    container_name: nginx_traversy
+    build:
+      context: .
+      dockerfile: docker/nginx.docker
+    volumes:
+      - ./:/var/www
+      # - ./docker/nginx/ssl:/etc/nginx/ssl
+    ports:
+      # - "8088:443"
+      - "8080:80"
+    links:
+      - php-fpm
+
+  php-fpm:
+    container_name: php_traversy
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    links:
+      - mysql
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: mysql_traversy
+    image: mysql:8.3.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root  # Add this line to set the root password
+      MYSQL_DATABASE: traversy     # Add this to automatically create the 'laravel' database
+    volumes:
+      - "./docker/mysql:/var/lib/mysql"
+    ports:
+      - "33062:3306"
+    command: --authentication_policy=mysql_native_password
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_traversy
+    restart: always
+    ports:
+     - '8084:80'
+    environment:
+      MAX_EXECUTION_TIME: 600
+      UPLOAD_LIMIT: 800M
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+      MYSQL_ROOT_PASSWORD: root # server mysql, user root, password root
+    depends_on:
+     - mysql
+
+  node:
+    build:
+      context: .
+      dockerfile: docker/node/node.docker
+    container_name: node
+    volumes:
+      - ./:/var/www
+    tty: true
