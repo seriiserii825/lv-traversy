@@ -8,4 +8,4 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 //
 
-Route::resource('job_listings', JobsListingsController::class);
+Route::apiResource('job_listings', JobsListingsController::class);
