@@ -13,7 +13,6 @@ class JobSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('job_listings')->truncate();
         Job::factory()->count(10)->create();
     }
 }

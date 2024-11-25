@@ -19,7 +19,7 @@ class JobFactory extends Factory
         return [
             'user_id' => 1,
             'title' => $this->faker->sentence,
-            'description' => $this->faker->paragraph,
+            'description' => $this->faker->paragraph(2, true),
             'salary' => $this->faker->numberBetween(30000, 100000),
             'tags' => $this->faker->words(3, true),
             'job_type' => $this->faker->randomElement(['full-time', 'part-time', 'contract', 'internship', 'temporary']),
