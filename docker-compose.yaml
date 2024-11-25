@@ -28,11 +28,11 @@ services:
       - ./:/var/www
       - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     links:
-      - mysql
+      - mariadb
     depends_on:
-      - mysql
+      - mariadb
 
-  mysql:
+  mariadb:
     container_name: mariadb_traversy
     image: mariadb:11.0.3  # Replace with the desired MariaDB version
     restart: always
@@ -60,7 +60,7 @@ services:
       PMA_ARBITRARY: 1
       MYSQL_ROOT_PASSWORD: root # server mysql, user root, password root
     depends_on:
-     - mysql
+     - mariadb
 
   # node:
   #   build:
