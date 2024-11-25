@@ -35,7 +35,9 @@ class JobsListingsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $job = Job::findOrFail($id);
+
+        return new JobResource($job);
     }
 
 
