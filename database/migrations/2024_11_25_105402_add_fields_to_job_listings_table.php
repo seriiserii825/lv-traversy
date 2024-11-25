@@ -27,8 +27,8 @@ return new class extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('zipcode')->nullable();
-            $table->string('contract_email');
-            $table->string('contract_phone')->nullable();
+            $table->string('contact_email');
+            $table->string('contact_phone')->nullable();
             $table->string('company_name');
             $table->string('company_description')->nullable();
             $table->string('company_logo')->nullable();
