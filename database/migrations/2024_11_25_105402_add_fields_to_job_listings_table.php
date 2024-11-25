@@ -16,6 +16,7 @@ return new class extends Migration
         // clear table data
         DB::table('job_listings')->truncate();
         Schema::table('job_listings', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->after('id');
             $table->integer('salary');
             $table->string('tags')->nullable();
             $table->enum('job_type', ['full-time', 'part-time', 'contract', 'internship', 'temporary'])->default('full-time');
@@ -41,6 +42,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('job_listings', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
             $table->dropColumn([
                 'salary',
                 'tags',
