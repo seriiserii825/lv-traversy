@@ -36,4 +36,8 @@ class Job extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public static function getJobTypes()
+    {
+        return ['Full time', 'Part time', 'Contract', 'Internship', 'Temporary'];
+    }
 }

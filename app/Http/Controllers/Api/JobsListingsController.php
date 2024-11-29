@@ -25,10 +25,19 @@ class JobsListingsController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        // $job = Job::create($request->validated());
+        $job_types = JOB::getJobTypes();
 
         return $request->validated();
         // return new JobResource($job);
+    }
+
+    public function create()
+    {
+        $job_types = JOB::getJobTypes();
+
+        return response()->json([
+            'job_types' => $job_types
+        ]);
     }
 
     /**
