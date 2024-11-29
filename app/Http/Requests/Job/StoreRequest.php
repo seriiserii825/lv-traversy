@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
             'description' => 'required|string',
             'salary' => 'required|integer',
             'tags' => 'nullable|string',
-            'job_type' => 'required|string|in:full-time,part-time,contract,internship,temporary',
+            'job_type' => 'required|string|in:Full time,Part time,Contract,Internship,Temporary',
             'remote' => 'required|boolean',
             'requirements' => 'nullable|string',
             'benefits' => 'nullable|string',

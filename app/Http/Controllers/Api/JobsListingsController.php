@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Job\StoreRequest;
 use App\Http\Resources\JobResource;
 use App\Models\Job;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class JobsListingsController extends Controller
@@ -25,10 +26,11 @@ class JobsListingsController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $job_types = JOB::getJobTypes();
-
-        return $request->validated();
-        // return new JobResource($job);
+        $user = User::first();
+        $result = $request->validated();
+        $result['user_id'] = $user->id;
+        $job = Job::create($result);
+        return new JobResource($job);
     }
 
     public function create()
