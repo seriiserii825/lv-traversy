@@ -29,8 +29,18 @@ class JobsListingsController extends Controller
         $user = User::first();
         $result = $request->validated();
         $result['user_id'] = $user->id;
-        $job = Job::create($result);
-        return new JobResource($job);
+        if ($request->hasFile('company_logo')) {
+            $result['company_logo'] = $request->file('company_logo')->store('logos', 'public');
+        }
+        try {
+            $job = Job::create($result);
+            return new JobResource($job);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Error creating job listing',
+                'error' => $th->getMessage()
+            ], 500);
+        }
     }
 
     public function create()

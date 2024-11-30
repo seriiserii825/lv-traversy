@@ -38,7 +38,7 @@ class StoreRequest extends FormRequest
             'contact_phone' => 'nullable|string',
             'company_name' => 'required|string',
             'company_description' => 'nullable|string',
-            'company_logo' => 'nullable|string',
+            'company_logo' => 'nullable|file|image',
             'company_website' => 'nullable|string',
         ];
     }
