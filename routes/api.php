@@ -9,4 +9,5 @@ use Illuminate\Support\Facades\Route;
 //
 
 Route::get('job_listings/create', [JobsListingsController::class, 'create']);
+Route::get('job_listings/edit/{id}', [JobsListingsController::class, 'edit']);
 Route::apiResource('job_listings', JobsListingsController::class);
