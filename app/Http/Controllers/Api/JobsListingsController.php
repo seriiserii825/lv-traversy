@@ -35,15 +35,20 @@ class JobsListingsController extends Controller
         if ($request->hasFile('company_logo')) {
             $result['company_logo'] = $request->file('company_logo')->store('logos', 'public');
         }
-        try {
-            $job = Job::create($result);
-            return new JobResource($job);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => 'Error creating job listing',
-                'error' => $th->getMessage()
-            ], 500);
-        }
+        $job = Job::create($result);
+        return new JobResource($job);
+    }
+
+    public function update(StoreRequest $request, $id)
+    {
+        $job = Job::findOrFail($id);
+        $result = $request->validated();
+        // if ($request->hasFile('company_logo')) {
+        //     Storage::disk('public')->delete($request->company_logo);
+        //     $result['company_logo'] = $request->file('company_logo')->store('logos', 'public');
+        // }
+        $job->update($result);
+        return new JobResource($job);
     }
 
     public function create()
@@ -77,30 +82,6 @@ class JobsListingsController extends Controller
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(StoreRequest $request, $id)
-    {
-        $result = $request->validated();
-        $job = Job::findOrFail($id);
-        $job->update($result);
-        return new JobResource($job);
-        return response()->json(['success' => true, 'data' => $result]);
-
-        try {
-            $result = $request->validated();
-            return response()->json(['success' => true, 'data' => $result]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            return response()->json($e->errors(), 422);
-        }
-        if ($request->hasFile('company_logo')) {
-            Storage::disk('public')->delete($request->company_logo);
-            $result['company_logo'] = $request->file('company_logo')->store('logos', 'public');
-        }
-        $job->update($result);
-        return new JobResource($job);
-    }
 
     /**
      * Remove the specified resource from storage.
