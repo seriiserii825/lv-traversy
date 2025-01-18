@@ -32,13 +32,15 @@ services:
     depends_on:
       - mariadb
 
-  mariadb:
+  mysql:
     container_name: mariadb_traversy
-    image: mariadb:11.0.3  # Replace with the desired MariaDB version
+    image: mariadb:11.0.3
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root       # Root password
-      MYSQL_DATABASE: traversy        # Database name
+      MYSQL_ROOT_PASSWORD: root  # Add this line to set the root password
+      MYSQL_DATABASE: traversy     # Add this to automatically create the 'laravel' database
+      CHARACTER_SET_SERVER: utf8mb4
+      COLLATION_SERVER: utf8mb4_general_ci
     volumes:
       - "./docker/mysql:/var/lib/mysql"
       - "./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf"
