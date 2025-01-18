@@ -6,7 +6,7 @@
     <title>@yield('title', 'Worktopia')</title>
 </head>
 <body class="bg-gray-100">
-    @include('partials.navbar')
+    <x-header />
     <main class="container p-4 m-4 mx-auto">
         @yield('content')
     </main>
