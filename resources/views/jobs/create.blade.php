@@ -1,5 +1,4 @@
-@extends('layout')
-
-@section('content')
+<x-layout>
+    <x-slot name="title">Worktopia Create</x-slot>
     <h3>Create</h3>
-@endsection
+</x-layout>
