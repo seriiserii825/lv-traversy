@@ -28,9 +28,9 @@ services:
       - ./:/var/www
       - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     links:
-      - mariadb
+      - mysql
     depends_on:
-      - mariadb
+      - mysql
 
   mysql:
     container_name: mariadb_traversy
@@ -62,7 +62,7 @@ services:
       PMA_ARBITRARY: 1
       MYSQL_ROOT_PASSWORD: root # server mysql, user root, password root
     depends_on:
-     - mariadb
+     - mysql
 
   # node:
   #   build:
