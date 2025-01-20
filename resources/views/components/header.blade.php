@@ -12,10 +12,11 @@
             <x-navlink url="/dashboard" :active="request()->is('dashboard')" icon="fa-gauge">
                 Dashboard
             </x-navlink>
-            <a href="create-job.html"
-                class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded hover:shadow-md transition duration-300">
-                <i class="fa fa-edit"></i> Create Job
-            </a>
+            <x-button-link url="/jobs/create" icon="fa-edit" hover_class="hover:bg-green-500">Create Job</x-button-link>
+            <!-- <a href="create-job.html" -->
+            <!--     class="px-4 py-2 text-black bg-yellow-500 rounded hover:bg-yellow-600 hover:shadow-md transition duration-300"> -->
+            <!--     <i class="fa fa-edit"></i> Create Job -->
+            <!-- </a> -->
         </nav>
         <button id="hamburger" class="flex items-center text-white md:hidden">
             <i class="text-2xl fa fa-bars"></i>
