@@ -30,11 +30,13 @@ class JobListingsController extends Controller
     public function store(Request $request)
     {
         $job = new JobListing();
-        $job->title = $request->title;
-        $job->description = $request->description;
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
         JobListing::create([
-            'title' => $job->title,
-            'description' => $job->description
+            'title' => $validated['title'],
+            'description' => $validated['description']
         ]);
 
         return redirect()->route('jobs.index');
