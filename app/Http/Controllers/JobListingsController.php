@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JobListing;
 use Illuminate\Http\Request;
 
-class JobListings extends Controller
+class JobListingsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,9 +35,9 @@ class JobListings extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(JobListing $job)
     {
-        //
+        return view('jobs.show')->with('job', $job);
     }
 
     /**

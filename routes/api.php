@@ -8,6 +8,6 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 //
 
-Route::get('job_listings/create', [JobsListingsController::class, 'create']);
-Route::get('job_listings/edit/{id}', [JobsListingsController::class, 'edit']);
-Route::apiResource('job_listings', JobsListingsController::class);
+// Route::get('job_listings/create', [JobsListingsController::class, 'create']);
+// Route::get('job_listings/edit/{id}', [JobsListingsController::class, 'edit']);
+// Route::apiResource('job_listings', JobsListingsController::class);
