@@ -28,7 +28,8 @@ class JobListingsSeeder extends Seeder
                 "contact_phone" => "348-334-3949",
                 "company_name" => "Algorix",
                 "company_description" => "Algorix is a leading tech firm specializing in innovative software solutions and cutting-edge technology.",
-                "company_website" => "https://algorix.com"
+                "company_website" => "https://algorix.com",
+                "company_logo" => "logo-algorix.png"
             ],
             [
                 "title" => "Marketing Specialist",
@@ -47,7 +48,8 @@ class JobListingsSeeder extends Seeder
                 "contact_phone" => "454-344-3344",
                 "company_name" => "Bitwave",
                 "company_description" => "Bitwave is a dynamic marketing agency focused on delivering innovative marketing strategies and results-driven solutions.",
-                "company_website" => "https://bitwave.com"
+                "company_website" => "https://bitwave.com",
+                "company_logo" => "logo-bitwave.png"
             ],
             [
                 "title" => "Web Developer",
@@ -66,7 +68,8 @@ class JobListingsSeeder extends Seeder
                 "contact_phone" => "456-876-5432",
                 "company_name" => "NextGen Solutions",
                 "company_description" => "NextGen Solutions is a forward-thinking technology company dedicated to crafting exceptional web applications and solutions.",
-                "company_website" => "https://nextgensolutions.com"
+                "company_website" => "https://nextgensolutions.com",
+                "company_logo" => "logo-nextgen.png"
             ],
             [
                 "title" => "Data Analyst",
@@ -85,7 +88,8 @@ class JobListingsSeeder extends Seeder
                 "contact_phone" => "444-555-5555",
                 "company_name" => "Quantum Code",
                 "company_description" => "Quantum Code is a prominent data analytics company providing insightful data solutions and analytics for better decision-making.",
-                "company_website" => "https://quantumcode.com"
+                "company_website" => "https://quantumcode.com",
+                "company_logo" => "logo-quantumcode.png"
             ],
             [
                 "title" => "Graphic Designer",
@@ -104,7 +108,8 @@ class JobListingsSeeder extends Seeder
                 "contact_phone" => "499-321-9876",
                 "company_name" => "Shield",
                 "company_description" => "Shield is a leading design agency known for its innovative approach to graphic design and creative solutions.",
-                "company_website" => "https://shield.com"
+                "company_website" => "https://shield.com",
+                "company_logo" => "logo-shield.png"
             ],
             [
                 "title" => "Data Scientist",
@@ -123,7 +128,8 @@ class JobListingsSeeder extends Seeder
                 "contact_phone" => "684-789-1234",
                 "company_name" => "Sparkle",
                 "company_description" => "Sparkle is an innovative company specializing in data science and machine learning, committed to solving complex data problems.",
-                "company_website" => "https://sparkle.com"
+                "company_website" => "https://sparkle.com",
+                "company_logo" => "logo-sparkle.png"
             ],
             [
                 "title" => "UX Designer",
@@ -142,7 +148,8 @@ class JobListingsSeeder extends Seeder
                 "contact_phone" => "567-890-1234",
                 "company_name" => "Vencom",
                 "company_description" => "Vencom is a design-driven company focused on creating exceptional user experiences through innovative UX design.",
-                "company_website" => "https://vencom.com"
+                "company_website" => "https://vencom.com",
+                "company_logo" => "logo-vencom.png"
             ],
             [
                 "title" => "Digital Media Specialist",
@@ -161,7 +168,8 @@ class JobListingsSeeder extends Seeder
                 "contact_phone" => "512-555-1234",
                 "company_name" => "Digital Media",
                 "company_description" => "Digital Media specializes in innovative online marketing strategies and digital content management.",
-                "company_website" => "https://digitalmedia.com"
+                "company_website" => "https://digitalmedia.com",
+                "company_logo" => "logo-digital-media.png"
             ],
             [
                 "title" => "Product Manager",
@@ -180,7 +188,8 @@ class JobListingsSeeder extends Seeder
                 "contact_phone" => "212-555-6789",
                 "company_name" => "Pink Pig",
                 "company_description" => "Pink Pig is a technology company dedicated to creating innovative products and solutions that drive industry advancement.",
-                "company_website" => "https://pinkpig.com"
+                "company_website" => "https://pinkpig.com",
+                "company_logo" => "logo-pink-pig.png"
             ],
             [
                 "title" => "IT Support Specialist",
@@ -199,7 +208,8 @@ class JobListingsSeeder extends Seeder
                 "contact_phone" => "214-555-9876",
                 "company_name" => "Tec Solutions",
                 "company_description" => "Tec Solutions provides comprehensive IT support and solutions, ensuring optimal performance of technology infrastructure.",
-                "company_website" => "https://tecsolutions.com"
+                "company_website" => "https://tecsolutions.com",
+                "company_logo" => "logo-tec-solutions.png"
             ]
         ];
         $users_id = User::pluck('id')->toArray();
