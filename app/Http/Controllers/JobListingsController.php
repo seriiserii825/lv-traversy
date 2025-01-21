@@ -29,7 +29,6 @@ class JobListingsController extends Controller
      */
     public function store(Request $request)
     {
-        $job = new JobListing();
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required'
