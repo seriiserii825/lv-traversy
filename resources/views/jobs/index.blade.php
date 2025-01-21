@@ -1,13 +1,11 @@
 <x-layout>
     <x-slot name="title">Worktopia Jobs</x-slot>
-    <h2 class="mb-5 text-xl font-bold">Jobs list</h2>
-    <ul>
+    <h2 class="mb-5 text-xl font-bold">All jobs</h2>
+    <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4">
         @forelse ($jobs as $job)
-            <li>
-                <a href="{{ route('jobs.show', ['job' => $job]) }}">{{ $job->title }}</a>
-            </li>
+            <x-job-card :job="$job" />
         @empty
-            <li class="font-bold text-red-600">No jobs available</li>
+            <p class="font-bold text-red-600">No jobs available</p>
         @endforelse
-    </ul>
+    </div>
 </x-layout>
