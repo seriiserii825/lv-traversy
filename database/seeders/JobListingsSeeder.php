@@ -1,11 +1,8 @@
 <?php
-
 namespace Database\Seeders;
-
 use App\Models\JobListing;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-
 class JobListingsSeeder extends Seeder
 {
     /**
@@ -13,9 +10,6 @@ class JobListingsSeeder extends Seeder
      */
     public function run(): void
     {
-        // $users_id = User::pluck('id')->toArray();
-
-
         $job_listings = [
             [
                 "title" => "Software Engineer",
@@ -208,9 +202,9 @@ class JobListingsSeeder extends Seeder
                 "company_website" => "https://tecsolutions.com"
             ]
         ];
-
+        $users_id = User::pluck('id')->toArray();
         foreach ($job_listings as $job) {
-            // $job['user_id'] = $users_id[array_rand($users_id)];
+            $job['user_id'] = $users_id[array_rand($users_id)];
             $job['created_at'] = now();
             $job['updated_at'] = now();
             JobListing::create($job);

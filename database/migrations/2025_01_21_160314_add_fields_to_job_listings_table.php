@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignId('user_id')->after('id')->constrained()->onDelete('cascade');
             $table->integer('salary');
             $table->string('tags')->nullable();
-            $table->enum('job_type', ['Full-Time', 'Part-Time', 'Contract', 'Internship', 'Temporary'])->default('Full-Time');
+            $table->string('job_type')->default('Full-Time');
             $table->boolean('remote')->default(false);
             $table->text('requirements')->nullable();
             $table->text('benefits')->nullable();
