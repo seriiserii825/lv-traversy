@@ -12,7 +12,7 @@ class JobListingsController extends Controller
      */
     public function index()
     {
-        $jobs = JobListing::all();
+        $jobs = JobListing::orderBy('created_at', 'desc')->get();
         return view('jobs.index', compact('jobs'));
     }
 
@@ -21,7 +21,7 @@ class JobListingsController extends Controller
      */
     public function create()
     {
-        //
+        return view('jobs.create');
     }
 
     /**
@@ -29,7 +29,15 @@ class JobListingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $job = new JobListing();
+        $job->title = $request->title;
+        $job->description = $request->description;
+        JobListing::create([
+            'title' => $job->title,
+            'description' => $job->description
+        ]);
+
+        return redirect()->route('jobs.index');
     }
 
     /**

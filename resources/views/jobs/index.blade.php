@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot name="title">Worktopia Jobs</x-slot>
-    <h2>Jobs list</h2>
+    <h2 class="mb-5 text-xl font-bold">Jobs list</h2>
     <ul>
         @forelse ($jobs as $job)
             <li>
