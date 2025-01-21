@@ -5,7 +5,7 @@
 <div>
     <div class="rounded-lg shadow-md bg-white p-4">
         <div class="flex items-center space-between gap-4">
-            <img src="/images/logos/{{$job->company_logo}}" alt="{{ $job->company_name }}" class="w-14" />
+            <img src="/images/logos/{{ $job->company_logo }}" alt="{{ $job->company_name }}" class="w-14" />
             <div>
                 <h2 class="text-xl font-semibold">{{ $job->title }}</h2>
                 <p class="text-sm text-gray-500">{{ $job->job_type }}</p>
@@ -24,7 +24,7 @@
             </li>
             <li class="mb-2">
                 <strong>Tags:</strong>
-                {{ $job->tags }}
+                {{ ucwords(str_replace(',', ', ', $job->tags)) }}
             </li>
         </ul>
         <a href="{{ route('jobs.show', $job) }}"
