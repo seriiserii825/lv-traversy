@@ -4,10 +4,10 @@
     <ul>
         @forelse ($jobs as $job)
             <li>
-                <span>{{ $job['title'] }}</span>
+                <span>{{ $job->title }}</span>
             </li>
         @empty
-            <li>No jobs available</li>
+            <li class="font-bold text-red-600">No jobs available</li>
         @endforelse
     </ul>
 </x-layout>

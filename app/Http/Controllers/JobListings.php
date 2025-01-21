@@ -12,7 +12,7 @@ class JobListings extends Controller
      */
     public function index()
     {
-        $jobs = JobListing::getAll();
+        $jobs = JobListing::all();
         return view('jobs.index', compact('jobs'));
     }
 
