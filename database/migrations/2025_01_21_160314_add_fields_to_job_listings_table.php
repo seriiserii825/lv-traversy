@@ -6,30 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
-
-    // "salary" => 90000,
-    // "tags" => "development,coding,java,python",
-    // "job_type" => "Part-Time",
-    // "remote" => false,
-    // "requirements" => "Bachelors degree in Computer Science or related field, 3+ years of software development experience",
-    // "benefits" => "Healthcare, 401(k) matching, flexible work hours",
-    // "address" => "123 Main St",
-    // "city" => "Albany",
-    // "state" => "NY",
-    // "zipcode" => "12201",
-    // "contact_email" => "info@algorix.com",
-    // "contact_phone" => "348-334-3949",
-    // "company_name" => "Algorix",
-    // "company_description" => "Algorix is a leading tech firm specializing in innovative software solutions and cutting-edge technology.",
-    // "company_logo" => "logos/logo-algorix.png",
-    // "company_website" => "https://algorix.com"
     /**
      * Run the migrations.
      */
     public function up(): void
     {
         Schema::table('job_listings', function (Blueprint $table) {
+            $table->foreignId('user_id')->after('id')->constrained()->onDelete('cascade');
             $table->integer('salary');
             $table->string('tags')->nullable();
             $table->enum('job_type', ['Full-Time', 'Part-Time', 'Contract', 'Internship', 'Temporary'])->default('Full-Time');
@@ -55,6 +38,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('job_listings', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
             $table->dropColumn('salary');
             $table->dropColumn('tags');
             $table->dropColumn('job_type');

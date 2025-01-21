@@ -10,6 +10,7 @@ class JobListing extends Model
     use HasFactory;
     protected $table = 'job_listings';
     protected $fillable = [
+        'user_id',
         'title',
         'description',
         'salary',
@@ -29,4 +30,9 @@ class JobListing extends Model
         'company_logo',
         'company_website'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
