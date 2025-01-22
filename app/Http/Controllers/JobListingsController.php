@@ -33,10 +33,10 @@ class JobListingsController extends Controller
             'title' => 'required',
             'description' => 'required'
         ]);
-        JobListing::create([
-            'title' => $validated['title'],
-            'description' => $validated['description']
-        ]);
+        // JobListing::create([
+        //     'title' => $validated['title'],
+        //     'description' => $validated['description']
+        // ]);
 
         return redirect()->route('jobs.index');
     }
