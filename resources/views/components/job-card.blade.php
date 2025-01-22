@@ -5,7 +5,11 @@
 <div>
     <div class="p-4 bg-white rounded-lg shadow-md">
         <div class="flex items-center space-between gap-4">
-            <img src="/images/logos/{{ $job->company_logo }}" alt="{{ $job->company_name }}" class="w-14" />
+            @if ($job->company_logo)
+                <img src="/images/logos/{{ $job->company_logo }}" alt="{{ $job->company_name }}" class="w-14" />
+            @else
+                <img src="/images/no-image.jpg" alt="{{ $job->company_name }}" class="w-14" />
+            @endif
             <div>
                 <h2 class="text-xl font-semibold">{{ $job->title }}</h2>
                 <p class="text-sm text-gray-500">{{ $job->job_type }}</p>
@@ -33,4 +37,3 @@
         </a>
     </div>
 </div>
-
