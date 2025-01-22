@@ -29,16 +29,31 @@ class JobListingsController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $validated = $request->validate([
-            'title' => 'required',
-            'description' => 'required'
+            'title' => 'string|required',
+            'description' => 'string|required',
+            'salary' => 'integer|required',
+            'tags' => 'string|nullable',
+            'job_type' => 'string|nullable',
+            'remote' => 'boolean|required',
+            'requirements' => 'string|nullable',
+            'benefits' => 'string|nullable',
+            'address' => 'string|nullable',
+            'city' => 'string|required',
+            'state' => 'string|required',
+            'zipcode' => 'string|nullable',
+            'contact_email' => 'email|required',
+            'contact_phone' => 'string|nullable',
+            'company_name' => 'string|required',
+            'company_description' => 'string|nullable',
+            'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'company_website' => 'string|nullable'
         ]);
-        // JobListing::create([
-        //     'title' => $validated['title'],
-        //     'description' => $validated['description']
-        // ]);
+        $validated['user_id'] = 1;
+        JobListing::create($validated);
 
-        return redirect()->route('jobs.index');
+        return redirect()->route('jobs.index')->with('success', 'Job Listing created successfully.');
     }
 
     /**

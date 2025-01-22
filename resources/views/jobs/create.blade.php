@@ -20,10 +20,7 @@
                 placeholder="Bachelor's degree in Computer Science" />
             <x-select-component name="category" label="Category" :options="['Technology', 'Finance', 'Healthcare', 'Education', 'Sales']" />
             <x-select-component name="job_type" label="Type" :options="['Full-time', 'Part-time', 'Contract', 'Internship']" />
-            <x-select-component name="remote" label="Remote" :options="[
-                0 => 'No',
-                1 => 'Yes',
-            ]" />
+            <x-select-component name="remote" label="Remote" :options="[0 => 'No', 1 => 'Yes']" />
             <x-input-component name="address" label="Address" placeholder="123 Main St" />
             <x-input-component name="city" label="City" placeholder="Albany" />
             <x-input-component name="state" label="State" placeholder="NY" />
