@@ -18,27 +18,8 @@
                 placeholder="Health insurance, 401k, paid time off" />
             <x-input-component name="requirements" label="Requirements"
                 placeholder="Bachelor's degree in Computer Science" />
-            <div class="mb-4">
-                <label class="block text-gray-700" for="job_type">Job Type</label>
-                <select id="job_type" name="job_type" class="w-full px-4 py-2 border rounded focus:outline-none">
-                    <option value="Full-Time" selected>
-                        Full-Time
-                    </option>
-                    <option value="Part-Time">Part-Time</option>
-                    <option value="Contract">Contract</option>
-                    <option value="Temporary">Temporary</option>
-                    <option value="Internship">Internship</option>
-                    <option value="Volunteer">Volunteer</option>
-                    <option value="On-Call">On-Call</option>
-                </select>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700" for="remote">Remote</label>
-                <select id="remote" name="remote" class="w-full px-4 py-2 border rounded focus:outline-none">
-                    <option value="false">No</option>
-                    <option value="true">Yes</option>
-                </select>
-            </div>
+            <x-select-component name="category" label="Category" :options="['Technology', 'Finance', 'Healthcare', 'Education', 'Sales']" />
+            <x-select-component name="type" label="Type" :options="['Full-time', 'Part-time', 'Contract', 'Internship']" />
             <x-input-component name="address" label="Address" placeholder="123 Main St" />
             <x-input-component name="city" label="City" placeholder="Albany" />
             <x-input-component name="state" label="State" placeholder="NY" />
