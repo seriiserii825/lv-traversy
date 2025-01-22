@@ -3,7 +3,7 @@
     'job',
 ])
 <div>
-    <div class="rounded-lg shadow-md bg-white p-4">
+    <div class="p-4 bg-white rounded-lg shadow-md">
         <div class="flex items-center space-between gap-4">
             <img src="/images/logos/{{ $job->company_logo }}" alt="{{ $job->company_name }}" class="w-14" />
             <div>
@@ -11,20 +11,20 @@
                 <p class="text-sm text-gray-500">{{ $job->job_type }}</p>
             </div>
         </div>
-        <p class="text-gray-700 text-lg mt-2">{{ Str::limit($job->description, 100) }}</p>
-        <ul class="my-4 bg-gray-100 p-4 rounded">
+        <p class="mt-2 text-lg text-gray-700">@shortText($job->description, 100)</p>
+        <ul class="p-4 my-4 bg-gray-100 rounded">
             <li class="mb-2"><strong>Salary:</strong> ${{ number_format($job->salary) }}</li>
             <li class="mb-2">
                 <strong>Location:</strong> {{ $job->state }}, {{ $job->city }}
                 @if ($job->remote)
-                    <span class="text-xs bg-green-500 text-white rounded-full px-2 py-1 ml-2">On-site</span>
+                    <span class="px-2 py-1 ml-2 text-xs text-white bg-green-500 rounded-full">On-site</span>
                 @else
-                    <span class="text-xs bg-red-500 text-white rounded-full px-2 py-1 ml-2">Remote</span>
+                    <span class="px-2 py-1 ml-2 text-xs text-white bg-red-500 rounded-full">Remote</span>
                 @endif
             </li>
             <li class="mb-2">
                 <strong>Tags:</strong>
-                {{ ucwords(str_replace(',', ', ', $job->tags)) }}
+                @formatTags($job->tags)
             </li>
         </ul>
         <a href="{{ route('jobs.show', $job) }}"
