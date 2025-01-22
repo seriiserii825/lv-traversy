@@ -39,6 +39,7 @@
             <x-input-component name="contact_email" label="Contact Email" type="email" placeholder="text@gmail.com" />
             <x-textarea-component name="company_benefits" label="Company Benefits"
                 placeholder="Health insurance, 401k, paid time off" />
+            <x-file-component name="company_logo" label="Company Logo" />
             <button type="submit"
                 class="w-full px-4 py-2 my-3 text-white bg-green-500 rounded hover:bg-green-600 focus:outline-none">
                 Save
