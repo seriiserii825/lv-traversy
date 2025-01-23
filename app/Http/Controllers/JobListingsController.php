@@ -48,7 +48,7 @@ class JobListingsController extends Controller
             'company_name' => 'string|required',
             'company_description' => 'string|nullable',
             'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'company_website' => 'string|nullable'
+            'company_website' => 'string|url|nullable'
         ]);
         $validated['user_id'] = 1;
         JobListing::create($validated);
