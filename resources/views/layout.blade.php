@@ -17,6 +17,12 @@
         <x-banner-top />
     @endif
     <main class="container p-4 m-4 mx-auto">
+        @if (session('success'))
+            <x-alert type="success" message="{{ session('success') }}" />
+        @endif
+        @if (session('error'))
+            <x-alert type="error" message="{{ session('error') }}" />
+        @endif
         {{ $slot }}
     </main>
     <script src="{{ asset('js/script.js') }}"></script>
