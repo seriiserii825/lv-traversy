@@ -6,7 +6,7 @@
     <div class="p-4 bg-white rounded-lg shadow-md">
         <div class="flex items-center space-between gap-4">
             @if ($job->company_logo)
-                <img src="/images/logos/{{ $job->company_logo }}" alt="{{ $job->company_name }}" class="w-14" />
+                <img src="/storage/{{ $job->company_logo }}" alt="{{ $job->company_name }}" class="w-14" />
             @else
                 <img src="/images/no-image.jpg" alt="{{ $job->company_name }}" class="w-14" />
             @endif

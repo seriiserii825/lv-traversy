@@ -75,8 +75,7 @@
                 <h3 class="mb-4 text-xl font-bold text-center">
                     Company Info
                 </h3>
-                <img src="/images/logos/{{ $job->company_logo }}" alt="Ad"
-                    class="w-full m-auto mb-4 rounded-lg" />
+                <img src="/storage/{{ $job->company_logo }}" alt="Ad" class="w-full m-auto mb-4 rounded-lg" />
                 <h4 class="text-lg font-bold">{{ $job->company_name }}</h4>
                 <p class="my-3 text-lg text-gray-700">@shortText($job->description, 100)</p>
                 <a href="{{ $job->company_website }}" target="_blank" class="text-blue-500">Visit Website</a>

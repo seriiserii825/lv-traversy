@@ -29,7 +29,6 @@ class JobListingsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $validated = $request->validate([
             'title' => 'string|required',
             'description' => 'string|required',
@@ -51,6 +50,11 @@ class JobListingsController extends Controller
             'company_website' => 'string|url|nullable'
         ]);
         $validated['user_id'] = 1;
+
+        if ($request->hasFile('company_logo')) {
+            $validated['company_logo'] = $request->file('company_logo')->store('logos', 'public');
+        }
+
         JobListing::create($validated);
 
         return redirect()->route('jobs.index')->with('success', 'Job Listing created successfully.');
