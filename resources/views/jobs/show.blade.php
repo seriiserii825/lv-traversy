@@ -11,7 +11,9 @@
                         <div class="flex ml-4 space-x-3">
                             <a href="{{ route('jobs.edit', $job) }}" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Edit</a>
                             <!-- Delete Form -->
-                            <form method="POST">
+                            <form method="POST" action="{{ route('jobs.destroy', $job->id) }}" onclick="confirm('Are you sure? ')">
+                                @csrf
+                                @method('DELETE')
                                 <button type="submit" class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">
                                     Delete
                                 </button>
