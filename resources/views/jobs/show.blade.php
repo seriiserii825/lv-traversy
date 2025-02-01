@@ -9,7 +9,7 @@
                             Back To Listings
                         </a>
                         <div class="flex ml-4 space-x-3">
-                            <a href="/edit" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Edit</a>
+                            <a href="{{ route('jobs.edit', $job) }}" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Edit</a>
                             <!-- Delete Form -->
                             <form method="POST">
                                 <button type="submit" class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">
@@ -22,6 +22,7 @@
                     <div class="p-4">
                         <h2 class="text-xl font-semibold">{{ $job->title }}</h2>
                         <p class="mt-2 text-lg text-gray-700">{{ $job->description }}</p>
+                        <pre>{{ $job_type }}</pre>
                         <ul class="p-4 my-4 bg-gray-100">
                             <li class="mb-2">
                                 <strong>Job Type:</strong> {{ $job->job_type }}

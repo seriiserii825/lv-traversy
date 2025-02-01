@@ -6,7 +6,7 @@
     <select id="{{ $name }}" name="{{ $name }}"
         class="@error($name) border-red-500 @enderror w-full px-4 py-2 border rounded focus:outline-none">
         @foreach ($options as $option_value => $option_label)
-            <option value="{{ $option_value }}" {{ old($name, $value) === $option_value ? 'selected' : '' }}>
+            <option value="{{ $option_value }}" {{ old($name, $value) == $option_value ? 'selected' : '' }}>
                 {{ $option_label }}
             </option>
         @endforeach

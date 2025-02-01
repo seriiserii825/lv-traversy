@@ -13,13 +13,11 @@
             <x-textarea-component name="description" label="Job Description"
                 placeholder="We are seeking a skilled and motivated Software Developer to join our growing development team..." />
             <x-input-component name="salary" type="number" label="Annual Salary" placeholder="90000" />
-            <x-input-component name="location" label="Location" placeholder="New York, NY" />
             <x-textarea-component name="benefits" label="Benefits"
                 placeholder="Health insurance, 401k, paid time off" />
             <x-input-component name="requirements" label="Requirements"
                 placeholder="Bachelor's degree in Computer Science" />
-            <x-select-component name="category" label="Category" :options="['Technology', 'Finance', 'Healthcare', 'Education', 'Sales']" />
-            <x-select-component name="job_type" label="Type" :options="['Full-time', 'Part-time', 'Contract', 'Internship']" />
+            <x-select-component name="job_type" label="Type" :options="[ 'Full-time' => 'Full-time', 'Part-time' => 'Part-time', 'Contract' => 'Contract', 'Internship' => 'Internship' ]" />
             <x-select-component name="remote" label="Remote" :options="[0 => 'No', 1 => 'Yes']" />
             <x-input-component name="address" label="Address" placeholder="123 Main St" />
             <x-input-component name="city" label="City" placeholder="Albany" />
@@ -34,8 +32,6 @@
             <x-input-component name="company_website" label="Company Website" placeholder="https://worktopia.com" />
             <x-input-component name="contact_phone" label="Contact Phone" placeholder="555-555-5555" />
             <x-input-component name="contact_email" label="Contact Email" type="email" placeholder="text@gmail.com" />
-            <x-textarea-component name="company_benefits" label="Company Benefits"
-                placeholder="Health insurance, 401k, paid time off" />
             <x-file-component name="company_logo" label="Company Logo" />
             <button type="submit"
                 class="w-full px-4 py-2 my-3 text-white bg-green-500 rounded hover:bg-green-600 focus:outline-none">
