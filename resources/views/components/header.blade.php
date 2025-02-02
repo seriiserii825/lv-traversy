@@ -28,14 +28,18 @@
         <x-navlink url="/" :active="request()->is('/')" :mobile="true">Home</x-navlink>
         <x-navlink url="/jobs" :active="request()->is('jobs')" :mobile="true">All Jobs</x-navlink>
         <x-navlink url="/jobs/saved" :active="request()->is('jobs/saved')" :mobile="true">Saved Jobs</x-navlink>
-        <x-navlink url="/login" :active="request()->is('login')" :mobile="true">Login</x-navlink>
-        <x-navlink url="/register" :active="request()->is('register')" :mobile="true">Register</x-navlink>
-        <x-navlink url="/dashboard" :active="request()->is('dashboard')" icon="fa-gauge" :mobile="true">
-            Dashboard
-        </x-navlink>
-        <br>
-        <x-button-link url="/jobs/create" icon="fa-edit" hover_class="hover:bg-green-500" :mobile="true">
-            Create Job
-        </x-button-link>
+        @auth
+            <x-logout-btn />
+        @else
+            <x-navlink url="/login" :active="request()->is('login')" :mobile="true">Login</x-navlink>
+            <x-navlink url="/register" :active="request()->is('register')" :mobile="true">Register</x-navlink>
+            <x-navlink url="/dashboard" :active="request()->is('dashboard')" icon="fa-gauge" :mobile="true">
+                Dashboard
+            </x-navlink>
+            <br>
+            <x-button-link url="/jobs/create" icon="fa-edit" hover_class="hover:bg-green-500" :mobile="true">
+                Create Job
+            </x-button-link>
+        @endauth
     </nav>
 </header>
