@@ -10,5 +10,6 @@ Route::resource('jobs', JobListingsController::class);
 
 Route::get('/login', [AuthController::class, 'loginView'])->name('login.view');
 Route::post('/login', [AuthController::class, 'loginStore'])->name('login.store');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/register', [AuthController::class, 'registerView'])->name('register.view');
 Route::post('/register', [AuthController::class, 'registerStore'])->name('register.store');
