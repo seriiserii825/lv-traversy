@@ -212,9 +212,14 @@ class JobListingsSeeder extends Seeder
                 "company_logo" => "logo-tec-solutions.png"
             ]
         ];
-        $users_id = User::pluck('id')->toArray();
-        foreach ($job_listings as $job) {
-            $job['user_id'] = $users_id[array_rand($users_id)];
+        $user_id = User::where('email', 'seriiburduja@gmail.com')->value('id');
+        $users_id = User::where('id', '!=', $user_id)->pluck('id')->toArray();
+        foreach ($job_listings as $index => $job) {
+            if ($index === 0) {
+                $job['user_id'] = $user_id;
+            }else{
+                $job['user_id'] = $users_id[array_rand($users_id)];
+            }
             $job['created_at'] = now();
             $job['updated_at'] = now();
             JobListing::create($job);
