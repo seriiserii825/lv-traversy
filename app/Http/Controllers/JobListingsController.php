@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\JobListing;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class JobListingsController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -74,8 +76,9 @@ class JobListingsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Job $job)
+    public function edit(JobListing $job)
     {
+        $this->authorize('update', $job);
         return view('jobs.edit')->with('job', $job);
     }
 
@@ -84,6 +87,7 @@ class JobListingsController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->authorize('update', JobListing::find($id));
         $validated = $request->validate([
             'title' => 'string|required',
             'description' => 'string|required',
@@ -119,8 +123,10 @@ class JobListingsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Job $job)
+    public function destroy(JobListing $job)
     {
+
+        $this->authorize('delete', $job);
         if ($job->company_logo) {
             Storage::delete('public/logos/' . basename($job->company_logo));
         }

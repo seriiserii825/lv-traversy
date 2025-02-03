@@ -18,4 +18,9 @@ class JobPolicy
     {
         return $job->user_id === $user->id;
     }
+
+    public function delete(User $user, JobListing $job)
+    {
+        return $job->user_id === $user->id;
+    }
 }
