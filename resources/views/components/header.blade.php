@@ -11,14 +11,14 @@
             <x-navlink url="/jobs" :active="request()->is('jobs')">All Jobs</x-navlink>
             <x-navlink url="/jobs/saved" :active="request()->is('jobs/saved')">Saved Jobs</x-navlink>
             @auth
+                <x-navlink url="/dashboard" :active="request()->is('dashboard')" icon="fa-gauge">
+                    Dashboard
+                </x-navlink>
                 <x-logout-btn />
                 <x-button-link url="/jobs/create" icon="fa-edit" hover_class="hover:bg-green-500">Create Job</x-button-link>
             @else
                 <x-navlink url="/login" :active="request()->is('login')">Login</x-navlink>
                 <x-navlink url="/register" :active="request()->is('register')">Register</x-navlink>
-                <x-navlink url="/dashboard" :active="request()->is('dashboard')" icon="fa-gauge">
-                    Dashboard
-                </x-navlink>
             @endauth
         </nav>
         <button @click="open = !open" id="hamburger" class="flex items-center text-white md:hidden">
@@ -32,6 +32,9 @@
         <x-navlink url="/jobs" :active="request()->is('jobs')" :mobile="true">All Jobs</x-navlink>
         <x-navlink url="/jobs/saved" :active="request()->is('jobs/saved')" :mobile="true">Saved Jobs</x-navlink>
         @auth
+            <x-navlink url="/dashboard" :active="request()->is('dashboard')" icon="fa-gauge" :mobile="true">
+                Dashboard
+            </x-navlink>
             <x-logout-btn />
             <x-button-link url="/jobs/create" icon="fa-edit" hover_class="hover:bg-green-500" :mobile="true">
                 Create Job
@@ -39,9 +42,6 @@
         @else
             <x-navlink url="/login" :active="request()->is('login')" :mobile="true">Login</x-navlink>
             <x-navlink url="/register" :active="request()->is('register')" :mobile="true">Register</x-navlink>
-            <x-navlink url="/dashboard" :active="request()->is('dashboard')" icon="fa-gauge" :mobile="true">
-                Dashboard
-            </x-navlink>
             <br>
             <x-button-link url="/jobs/create" icon="fa-edit" hover_class="hover:bg-green-500" :mobile="true">
                 Create Job
