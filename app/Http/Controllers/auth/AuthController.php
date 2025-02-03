@@ -28,7 +28,7 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return redirect()->route('login.view')->with('success', 'User created successfully');
+        return redirect()->route('login')->with('success', 'User created successfully');
     }
     public function loginView()
     {
@@ -53,6 +53,6 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login.view')->with('success', 'Logged out successfully');
+        return redirect()->route('login')->with('success', 'Logged out successfully');
     }
 }
