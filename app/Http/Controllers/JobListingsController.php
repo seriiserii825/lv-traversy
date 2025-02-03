@@ -76,10 +76,11 @@ class JobListingsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(JobListing $job)
+    public function edit(JobListing $job, Request $request)
     {
+        $from_dashboard = $request->query('from_dashboard');
         $this->authorize('update', $job);
-        return view('jobs.edit')->with('job', $job);
+        return view('jobs.edit', compact('job', 'from_dashboard'));
     }
 
     /**
@@ -117,13 +118,17 @@ class JobListingsController extends Controller
             $validated['company_logo'] = $path;
         }
         $job->update($validated);
+
+        if ($request->query('from_dashboard')){
+            return redirect()->route('dashboard')->with('success', "Job $job->title updated successfully.");
+        }
         return redirect()->route('jobs.index')->with('success', 'Job Listing updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(JobListing $job)
+    public function destroy(JobListing $job, Request $request)
     {
 
         $this->authorize('delete', $job);
@@ -131,6 +136,9 @@ class JobListingsController extends Controller
             Storage::delete('public/logos/' . basename($job->company_logo));
         }
         $job->delete();
+        if ($request->query('from_dashboard')){
+            return redirect()->route('dashboard')->with('success', 'Job Listing deleted successfully.');
+        }
         return redirect()->route('jobs.index')->with('success', 'Job Listing deleted successfully.');
     }
 }

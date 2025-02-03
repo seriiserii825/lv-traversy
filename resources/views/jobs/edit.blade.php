@@ -4,7 +4,9 @@
         <h2 class="mb-4 text-4xl font-bold text-center">
             Edit Job Listing
         </h2>
-        <form method="POST" action="{{ route('jobs.update', $job->id) }}" enctype="multipart/form-data">
+        <form method="POST"
+            action="{{ route('jobs.update', $job->id) }}@if ($from_dashboard) ?from_dashboard=true @endif"
+            enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <h2 class="mb-6 text-2xl font-bold text-center text-gray-500">
@@ -19,8 +21,14 @@
                 placeholder="Health insurance, 401k, paid time off" />
             <x-input-component name="requirements" :value="old('requirements', $job->requirements)" label="Requirements"
                 placeholder="Bachelor's degree in Computer Science" />
-            <x-select-component name="job_type" label="Type" value="{{ old('job_type', (int)$job->job_type) }}"  :options="[ 'Full-time' => 'Full-time', 'Part-time' => 'Part-time', 'Contract' => 'Contract', 'Internship' => 'Internship' ]" />
-            <x-select-component name="remote" label="Remote" :value="old('remote', $job->remote)"  :options="[0 => 'No', 1 => 'Yes']" />
+            <x-select-component name="job_type" label="Type" value="{{ old('job_type', (int) $job->job_type) }}"
+                :options="[
+                    'Full-time' => 'Full-time',
+                    'Part-time' => 'Part-time',
+                    'Contract' => 'Contract',
+                    'Internship' => 'Internship',
+                ]" />
+            <x-select-component name="remote" label="Remote" :value="old('remote', $job->remote)" :options="[0 => 'No', 1 => 'Yes']" />
             <x-input-component name="address" :value="old('address', $job->address)" label="Address" placeholder="123 Main St" />
             <x-input-component name="city" :value="old('city', $job->city)" label="City" placeholder="Albany" />
             <x-input-component name="state" :value="old('state', $job->state)" label="State" placeholder="NY" />
