@@ -2,6 +2,9 @@
     <div class="container flex items-center justify-between mx-auto">
         <h1 class="text-3xl font-semibold">
             <a href="{{ url('/') }}">Workopia</a>
+            @auth
+                <span class="text-sm text-white font-bold italic underline">{{ auth()->user()->email }}</span>
+            @endauth
         </h1>
         <nav class="items-center hidden md:flex space-x-4">
             <x-navlink url="/" :active="request()->is('/')">Home</x-navlink>
