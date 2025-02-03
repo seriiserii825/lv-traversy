@@ -51,7 +51,7 @@ class JobListingsController extends Controller
             'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'company_website' => 'string|url|nullable'
         ]);
-        $validated['user_id'] = 1;
+        $validated['user_id'] = auth()->user()->id;
 
         if ($request->hasFile('company_logo')) {
             $validated['company_logo'] = $request->file('company_logo')->store('logos', 'public');
