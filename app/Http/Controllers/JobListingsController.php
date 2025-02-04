@@ -16,7 +16,7 @@ class JobListingsController extends Controller
      */
     public function index()
     {
-        $jobs = JobListing::orderBy('updated_at', 'desc')->get();
+        $jobs = JobListing::orderBy('updated_at', 'desc')->paginate(3);
         return view('jobs.index', compact('jobs'));
     }
 
