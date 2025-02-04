@@ -1,7 +1,7 @@
 <x-layout>
-    <div class="flex items-center justify-center min-h-screen bg-gray-100>
-        <div class="w-full max-w-xl p-8 mx-auto bg-white rounded-lg shadow-lg >
-            <h2 class="mb-6 text-2xl font-bold text-center">Register</h2>
+    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+        <div class="w-1/3 p-4 m-auto bg-white rounded-sm">
+            <h2 class="p-8 mx-auto text-lg font-bold text-center">Register</h2>
             <form method="POST" action="{{ route('register.store') }}">
                 @csrf
                 <x-input-component label="Full Name" name="name" type="text" required />
@@ -21,5 +21,4 @@
             </form>
         </div>
     </div>
-
 </x-layout>

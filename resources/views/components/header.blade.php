@@ -3,7 +3,7 @@
         <h1 class="text-3xl font-semibold">
             <a href="{{ url('/') }}">Workopia</a>
             @auth
-                <span class="text-sm text-white font-bold italic underline">{{ auth()->user()->email }}</span>
+                <span class="text-sm italic font-bold text-white underline">{{ auth()->user()->email }}</span>
             @endauth
         </h1>
         <nav class="items-center hidden md:flex space-x-4">
@@ -15,6 +15,15 @@
                     Dashboard
                 </x-navlink>
                 <x-logout-btn />
+                <a href="{{ route('dashboard') }}" target="_blank">
+                    @if (Auth::user()->avatar)
+                        <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="avatar"
+                            class="w-8 h-8 rounded-full" />
+                    @else
+                        <img src="{{ asset('storage/avatars/default-avatar.webp') }}" alt="avatar"
+                            class="w-8 h-8 rounded-full" />
+                    @endif
+                </a>
                 <x-button-link url="/jobs/create" icon="fa-edit" hover_class="hover:bg-green-500">Create Job</x-button-link>
             @else
                 <x-navlink url="/login" :active="request()->is('login')">Login</x-navlink>
