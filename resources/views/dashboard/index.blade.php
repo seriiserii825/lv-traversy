@@ -4,11 +4,15 @@
             <div class="p-2 mb-3 font-bold ">
                 <h2 class="text-xl">My Profile</h2>
             </div>
+            @if ($user->avatar)
+                <img src="{{ asset('storage/' . $user->avatar) }}" alt="avatar" class="object-cover w-48 h-48 mb-4 rounded-full">
+            @endif
             <form action="{{ route('profile.update', $user) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <x-input-component name="name" label="Name" :value="$user->name" />
                 <x-input-component name="email" label="Email" type="email" :value="$user->email" />
+                <x-file-component name="avatar" label="Avatar" :value="$user->avatar" :show_image="false" />
                 <button class="p-2 text-white bg-green-500 hover:bg-green-600">Submit</button>
             </form>
         </div>
