@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([
             JobListingsSeeder::class,
+            BookmarkSeeder::class,
         ]);
+
     }
 }
