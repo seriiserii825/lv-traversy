@@ -13,7 +13,7 @@
                 <x-input-component name="name" label="Name" :value="$user->name" />
                 <x-input-component name="email" label="Email" type="email" :value="$user->email" />
                 <x-file-component name="avatar" label="Avatar" :value="$user->avatar" :show_image="false" />
-                <button class="p-2 text-white bg-green-500 hover:bg-green-600">Submit</button>
+                    <x-button text="Update" bg="green" type="submit" />
             </form>
         </div>
         <div class="px-4 pt-4 bg-white basis-2/3">
@@ -22,22 +22,19 @@
             </div>
             @forelse($jobs as $job)
                 <div
-                    class="flex items-center px-4 py-2 mb-1 font-bold text-center bg-white border-gray-100 rounded-2 shadow-sm">
+                    class="flex items-center px-4 py-2 mb-1 font-bold text-center bg-white border-gray-100 gap-3 rounded-2 shadow-sm">
                     <a href="{{ route('jobs.show', $job) }}" class="mr-auto text-gray-700">
                         <p>{{ $job->title }}</p>
                         <p class="italic text-left text-gray-400">{{ $job->job_type }}</p>
                     </a>
                     <span
                         class="p-2 ml-auto mr-6 text-xs text-gray-400 bg-slate-100 rounded-3">{{ $job->updated_at }}</span>
-                    <a href="{{ route('jobs.edit', $job) }}?from_dashboard=true"
-                        class="px-4 py-1 text-white bg-blue-500 rounded hover:bg-blue-600">Edit</a>
+                    <x-button url="{{ route('jobs.edit', $job) }}?from_dashboard=true" text="Edit" bg="blue" />
                     <form method="POST" action="{{ route('jobs.destroy', $job->id) }}?from_dashboard=true"
                         onclick="confirm('Are you sure? ')">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="px-4 py-1 ml-3 text-white bg-red-500 rounded hover:bg-red-600">
-                            Delete
-                        </button>
+                        <x-button text="Delete" bg="red" type="submit" />
                     </form>
                 </div>
             @empty
