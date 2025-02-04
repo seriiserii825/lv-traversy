@@ -39,4 +39,8 @@ class JobListing extends Model
     protected $casts = [
         'remote' => 'boolean',
     ];
+
+    public function bookmarkedByUsers(){
+        return $this->belongsToMany(User::class, 'job_user_bookmarks', 'job_id', 'user_id')->withTimestamps();
+    }
 }
