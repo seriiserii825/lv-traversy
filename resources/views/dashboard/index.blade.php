@@ -1,6 +1,6 @@
 <x-layout>
-    <section class="flex flex-col md:flex-row gap-4">
-        <div class="px-6 py-4 bg-white flex-[600px]">
+    <section class="flex flex-col w-full lg:flex-row gap-4">
+        <div class="px-6 py-4 bg-white basis-1/3">
             <div class="p-2 mb-3 font-bold ">
                 <h2 class="text-xl">My Profile</h2>
             </div>
@@ -12,7 +12,7 @@
                 <button class="p-2 text-white bg-green-500 hover:bg-green-600">Submit</button>
             </form>
         </div>
-        <div class="w-full px-4 pt-4 bg-white flex-3">
+        <div class="px-4 pt-4 bg-white basis-2/3">
             <div class="p-2 mb-3 font-bold ">
                 <h2 class="text-xl">My Jobs</h2>
             </div>
