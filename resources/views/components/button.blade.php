@@ -1,4 +1,4 @@
-@props(['url', 'text' => '', 'bg' => 'blue', 'type' => 'link'])
+@props(['url' => '', 'text' => '', 'bg' => 'blue', 'type' => 'link', 'width' => ''])
 @php
     $color = 'bg-blue-500 hover:bg-blue-600';
     if ($bg === 'red') {
@@ -7,6 +7,11 @@
         $color = 'bg-green-500 hover:bg-green-600';
     } elseif ($bg === 'yellow') {
         $color = 'bg-yellow-500 hover:bg-yellow-600';
+    } elseif ($bg === 'indigo') {
+        $color = 'text-indigo-700 bg-indigo-100 hover:bg-indigo-200 text-indigo-700';
+    }
+    if ($width === 'full') {
+        $color .= ' w-full';
     }
 @endphp
 @if ($type === 'button')
