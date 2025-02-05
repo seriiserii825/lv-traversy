@@ -9,7 +9,7 @@
         <nav class="items-center hidden md:flex space-x-4">
             <x-navlink url="/" :active="request()->is('/')">Home</x-navlink>
             <x-navlink url="/jobs" :active="request()->is('jobs')">All Jobs</x-navlink>
-            <x-navlink url="/jobs/saved" :active="request()->is('jobs/saved')">Saved Jobs</x-navlink>
+            <x-navlink url="/bookmarks" :active="request()->is('bookmarks')">Saved Jobs</x-navlink>
             @auth
                 <x-navlink url="/dashboard" :active="request()->is('dashboard')" icon="fa-gauge">
                     Dashboard
@@ -39,7 +39,7 @@
         class="pb-4 mt-5 text-white bg-blue-900 md:hidden space-y-2">
         <x-navlink url="/" :active="request()->is('/')" :mobile="true">Home</x-navlink>
         <x-navlink url="/jobs" :active="request()->is('jobs')" :mobile="true">All Jobs</x-navlink>
-        <x-navlink url="/jobs/saved" :active="request()->is('jobs/saved')" :mobile="true">Saved Jobs</x-navlink>
+        <x-navlink url="/bookmarks" :active="request()->is('bookmarks')" :mobile="true">Saved Jobs</x-navlink>
         @auth
             <x-navlink url="/dashboard" :active="request()->is('dashboard')" icon="fa-gauge" :mobile="true">
                 Dashboard

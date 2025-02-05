@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobListingsController;
@@ -12,6 +13,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('jobs', JobListingsController::class);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmarks');
 });
 // Route::resource('jobs', JobListingsController::class)->middleware('auth')->only(['create', 'edit', 'update', 'destroy']);
 Route::resource('jobs', JobListingsController::class)->except(['create', 'edit', 'update', 'destroy']);
