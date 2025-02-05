@@ -24,4 +24,14 @@ class BookmarkController extends Controller
             return redirect()->route('bookmarks')->with('success', 'Job bookmarked successfully');
         }
     }
+    public function destroy(JobListing $job)
+    {
+        $user = Auth::user();
+        if (!$user->bookmarkedJobs()->where('job_id', $job->id)->exists()) {
+            return redirect()->back()->with('error', 'Job is not bookmarked');
+        }
+
+        $user->bookmarkedJobs()->detach($job->id);
+        return redirect()->route('bookmarks')->with('success', 'Job unbookmarked successfully');
+    }
 }

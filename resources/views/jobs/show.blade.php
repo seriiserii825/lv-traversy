@@ -88,16 +88,29 @@
                 <a href="{{ $job->company_website }}" target="_blank" class="text-blue-500">Visit Website</a>
 
                 @auth
-                    <form method="POST" action="{{ route('bookmarks.store', $job) }}">
-                        @csrf
-                        <button type="submit"
-                            class="flex items-center justify-center w-full px-4 py-2 mt-10 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">
-                            <i class="mr-3 fas fa-bookmark"></i>
-                            <span>Add Bookmark</span>
-                        </button>
-                    </form>
+                    @if (auth()->user()->bookmarkedJobs()->where('job_id', $job->id)->exists())
+                        <form method="POST" action="{{ route('bookmarks.destroy', $job) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="flex items-center justify-center w-full px-4 py-2 mt-10 font-bold text-white bg-red-500 rounded-full hover:bg-blue-600">
+                                <i class="mr-3 fas fa-bookmark"></i>
+                                <span>Remove Bookmark</span>
+                            </button>
+                        </form>
+                    @else
+                        <form method="POST" action="{{ route('bookmarks.store', $job) }}">
+                            @csrf
+                            <button type="submit"
+                                class="flex items-center justify-center w-full px-4 py-2 mt-10 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">
+                                <i class="mr-3 fas fa-bookmark"></i>
+                                <span>Add Bookmark</span>
+                            </button>
+                        </form>
+                    @endif
                 @else
-                    <div class="flex items-center justify-center w-full px-4 py-2 mt-10 font-bold text-white bg-gray-500 rounded-full hover:bg-blue-600">
+                    <div
+                        class="flex items-center justify-center w-full px-4 py-2 mt-10 font-bold text-white bg-gray-500 rounded-full hover:bg-blue-600">
                         <i class="mr-3 fas fa-bookmark"></i>
                         <span>Login to add bookmark</span>
                     </div>

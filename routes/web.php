@@ -15,8 +15,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmarks');
     Route::post('/bookmarks/{job}', [BookmarkController::class, 'store'])->name('bookmarks.store');
+    Route::delete('/bookmarks/{job}', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
 });
-// Route::resource('jobs', JobListingsController::class)->middleware('auth')->only(['create', 'edit', 'update', 'destroy']);
 Route::resource('jobs', JobListingsController::class)->except(['create', 'edit', 'update', 'destroy']);
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/login', [AuthController::class, 'loginView'])->name('login');
