@@ -43,4 +43,8 @@ class JobListing extends Model
     public function bookmarkedByUsers(){
         return $this->belongsToMany(User::class, 'job_user_bookmarks', 'job_id', 'user_id')->withTimestamps();
     }
+
+    public function applicants(){
+        return $this->hasMany(Applicant::class, 'job_id');
+    }
 }
