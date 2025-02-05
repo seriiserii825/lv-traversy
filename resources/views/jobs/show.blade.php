@@ -87,10 +87,21 @@
                 <p class="my-3 text-lg text-gray-700">@shortText($job->description, 100)</p>
                 <a href="{{ $job->company_website }}" target="_blank" class="text-blue-500">Visit Website</a>
 
-                <a href=""
-                    class="flex items-center justify-center w-full px-4 py-2 mt-10 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600"><i
-                        class="mr-3 fas fa-bookmark"></i> Bookmark
-                    Listing</a>
+                @auth
+                    <form method="POST" action="{{ route('bookmarks.store', $job) }}">
+                        @csrf
+                        <button type="submit"
+                            class="flex items-center justify-center w-full px-4 py-2 mt-10 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600">
+                            <i class="mr-3 fas fa-bookmark"></i>
+                            <span>Add Bookmark</span>
+                        </button>
+                    </form>
+                @else
+                    <div class="flex items-center justify-center w-full px-4 py-2 mt-10 font-bold text-white bg-gray-500 rounded-full hover:bg-blue-600">
+                        <i class="mr-3 fas fa-bookmark"></i>
+                        <span>Login to add bookmark</span>
+                    </div>
+                @endauth
             </aside>
         </div>
     </main>
