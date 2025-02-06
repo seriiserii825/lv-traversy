@@ -18,6 +18,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/bookmarks/{job}', [BookmarkController::class, 'store'])->name('bookmarks.store');
     Route::delete('/bookmarks/{job}', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
     Route::post('/jobs/{job}/apply', [ApplicantController::class, 'store'])->name('applicant.store');
+    Route::delete('/applicant/{applicant}', [ApplicantController::class, 'destroy'])->name('applicant.destroy');
 });
 Route::resource('jobs', JobListingsController::class)->except(['create', 'edit', 'update', 'destroy']);
 Route::group(['middleware' => 'guest'], function () {

@@ -54,6 +54,8 @@
                                         Message</th>
                                     <th class="px-4 py-2 text-white bg-gray-400 border border-gray-300 border-solid">
                                         File</th>
+                                    <th class="px-4 py-2 text-white bg-gray-400 border border-gray-300 border-solid">
+                                        Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -75,6 +77,19 @@
                                                 <i class="mr-2 fas fa-download"></i>
                                                 <span>Download</span>
                                             </a>
+                                        </td>
+                                        <td
+                                            class="px-4 py-2 text-red-500 underline border border-gray-300 border-solid">
+                                            <form action="{{ route('applicant.destroy', $applicant->id) }}"
+                                                method="POST" accept-charset="utf-8">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" onclick="return confirm('Are you sure?')">
+                                                    <i class="mr-2 fas fa-trash"></i>
+                                                    <span>Delete</span>
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

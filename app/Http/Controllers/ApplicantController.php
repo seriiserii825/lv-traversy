@@ -29,4 +29,10 @@ class ApplicantController extends Controller
 
         return redirect()->route('jobs.index')->with('success', 'Application submitted successfully');
     }
+    public function destroy(Applicant $applicant)
+    {
+        // dd($applicant);
+        $applicant->delete();
+        return redirect()->route('dashboard')->with('success', "Applicant $applicant->full_name deleted successfully");
+    }
 }
