@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\DashboardController;
@@ -16,6 +17,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmarks');
     Route::post('/bookmarks/{job}', [BookmarkController::class, 'store'])->name('bookmarks.store');
     Route::delete('/bookmarks/{job}', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
+    Route::post('/jobs/{job}/apply', [ApplicantController::class, 'store'])->name('applicant.store');
 });
 Route::resource('jobs', JobListingsController::class)->except(['create', 'edit', 'update', 'destroy']);
 Route::group(['middleware' => 'guest'], function () {
