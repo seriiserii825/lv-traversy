@@ -39,7 +39,8 @@
                             <li class="mb-2">
                                 <strong>Salary:</strong> ${{ number_format($job->salary) }}
                             </li>
-                            <li class="mb-2">
+                            <li id="site-location" data-site="{{ "$job->state, $job->city, $job->address" }}"
+                                class="mb-2">
                                 <strong>Site Location:</strong> {{ $job->state }}, {{ $job->city }}
                             </li>
                             <li class="mb-2">
@@ -85,7 +86,7 @@
                 @endauth
 
                 <div class="p-6 mt-6 bg-white rounded-lg shadow-md">
-                    <div id="map"></div>
+                    <div id="map" class="h-96"></div>
                 </div>
             </section>
 
@@ -131,3 +132,46 @@
         </div>
     </main>
 </x-layout>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        async function getLatLon(address) {
+            const url =
+                `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'User-Agent': 'YourAppName'
+                    }
+                });
+                const data = await response.json();
+
+                if (data.length > 0) {
+                    console.log(`Latitude: ${data[0].lat}, Longitude: ${data[0].lon}`);
+                    return {
+                        lat: data[0].lat,
+                        lon: data[0].lon
+                    };
+                } else {
+                    console.error('Address not found');
+                    return null;
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        const site_location = document.getElementById('site-location');
+        const address = site_location.dataset.site;
+        // Example Usage
+        const lat_long = await getLatLon(address);
+        // const coords = [lat_long.lat, lat_long.lwn];
+        setTimeout(() => {
+            const coords = [47.04265335158824, 28.859066955048156];
+            let map = L.map("map").setView(coords, 19);
+        }, 1000);
+
+    })
+</script>
