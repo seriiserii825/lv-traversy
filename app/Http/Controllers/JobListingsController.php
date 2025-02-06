@@ -141,4 +141,26 @@ class JobListingsController extends Controller
         }
         return redirect()->route('jobs.index')->with('success', 'Job Listing deleted successfully.');
     }
+    public function search(Request $request)
+    {
+        $keywords = $request->input('keywords');
+        $location = $request->input('location');
+
+        $query = JobListing::query();
+
+        if ($keywords) {
+            $query->where('title', 'like', "%$keywords%")
+                ->orWhere('description', 'like', "%$keywords%")
+                ->orWhere('tags', 'like', "%$keywords%");
+        }
+        if ($location) {
+            $query->where('city', 'like', "%$location%")
+                ->orWhere('address', 'like', "%$location%")
+                ->orWhere('state', 'like', "%$location%")
+                ->orWhere('zipcode', 'like', "%$location%");
+        }
+
+        $jobs = $query->orderBy('updated_at', 'desc')->paginate(9);
+        return view('jobs.index', compact('jobs'));
+    }
 }

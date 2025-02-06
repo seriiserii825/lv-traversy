@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/jobs/search', [JobListingsController::class, 'search'])->name('jobs.search');
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('jobs', JobListingsController::class);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
