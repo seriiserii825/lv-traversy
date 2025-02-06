@@ -9,7 +9,7 @@
                 <h2 class="mb-4 text-lg font-semibold">Job applicant</h2>
                 <form method="POST" enctype="multipart/form-data" action="{{ route('applicant.store', $job->id) }}">
                     @csrf
-                    <x-input-component label="Full Name" name="full_name" :required="true" id="full_name" />
+                    <x-input-component label="Full Name" name="full_name" :value="auth()->user()->name" :required="true" id="full_name" />
                     <x-input-component label="Phone" name="contact_phone" id="contact_phone" />
                     <x-input-component :required="true" label="Email" name="contact_email" id="contact_email"
                         type="email" />

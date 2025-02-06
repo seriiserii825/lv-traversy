@@ -69,7 +69,14 @@
                 </div>
 
                 @auth
-                    <x-applay-now :job="$job" />
+                    @can('update', $job)
+                        <div class="flex justify-center">
+                            <span class="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">You can't apply to your
+                                own job</span>
+                        </div>
+                    @else
+                        <x-applay-now :job="$job" />
+                    @endcan
                 @else
                     <div class="flex justify-center">
                         <a href="{{ route('login') }}"
