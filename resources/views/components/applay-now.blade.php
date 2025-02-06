@@ -7,11 +7,12 @@
         <div x-cloak x-show="open" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
             <div @click.away="open = false" class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                 <h2 class="mb-4 text-lg font-semibold">Job applicant</h2>
-                <form method="POST" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('applicant.store', $job->id) }}">
                     @csrf
                     <x-input-component label="Full Name" name="full_name" :required="true" id="full_name" />
                     <x-input-component label="Phone" name="contact_phone" id="contact_phone" />
-                    <x-input-component :required="true" label="Email" name="contact_email" id="contact_email" type="email" />
+                    <x-input-component :required="true" label="Email" name="contact_email" id="contact_email"
+                        type="email" />
                     <x-textarea-component label="Message" name="message" id="message" />
                     <x-input-component label="Location" name="location" id="location" />
                     <x-file-component :required="true" label="Upload you file(pdf)" name="resume" id="resume" />
