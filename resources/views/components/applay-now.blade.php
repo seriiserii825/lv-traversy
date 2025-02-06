@@ -4,9 +4,9 @@
         <div @click="open = true" class="flex justify-center">
             <x-button text="Apply now" type="button" bg="indigo" />
         </div>
-        <div x-show="open" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-            <div @click.away="open = false" class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
-                <h2 class="text-lg font-semibold mb-4">Job applicant</h2>
+        <div x-cloak x-show="open" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+            <div @click.away="open = false" class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+                <h2 class="mb-4 text-lg font-semibold">Job applicant</h2>
                 <form enctype="multipart/form-data">
                     @csrf
                     <x-input-component label="Full Name" name="name" :required="true" id="name" />
