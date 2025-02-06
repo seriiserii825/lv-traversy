@@ -68,7 +68,14 @@
                     </p>
                 </div>
 
-                <x-applay-now :job="$job" />
+                @auth
+                    <x-applay-now :job="$job" />
+                @else
+                    <div class="flex justify-center">
+                        <a href="{{ route('login') }}"
+                            class="px-4 py-2 text-white bg-red-500 rounded hover:bg-blue-600">Login to Apply</a>
+                    </div>
+                @endauth
 
                 <div class="p-6 mt-6 bg-white rounded-lg shadow-md">
                     <div id="map"></div>

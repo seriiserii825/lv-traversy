@@ -8,7 +8,7 @@
     } elseif ($bg === 'yellow') {
         $color = 'bg-yellow-500 hover:bg-yellow-600';
     } elseif ($bg === 'indigo') {
-        $color = 'text-indigo-700 bg-indigo-100 hover:bg-indigo-200 text-indigo-700';
+        $color = 'text-indigo-700 bg-indigo-300 hover:bg-indigo-400 text-indigo-700';
     }
     if ($width === 'full') {
         $color .= ' w-full';
