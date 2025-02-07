@@ -95,7 +95,7 @@
                     </div>
                 @endauth
 
-                <div class="p-6 mt-6 bg-white rounded-lg shadow-md">
+                <div class="relative z-10 p-6 mt-6 bg-white rounded-lg shadow-md">
                     <div id="map" class="h-[600px]"></div>
                 </div>
             </section>

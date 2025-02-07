@@ -1,10 +1,10 @@
 @props(['job' => null])
 @if ($job)
-    <div x-data="{ open: false }">
+    <div class="relative z-20" x-data="{ open: false }">
         <div @click="open = true" class="flex justify-center">
             <x-button text="Apply now" type="button" bg="indigo" />
         </div>
-        <div x-cloak x-show="open" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+        <div x-cloak x-show="open" class="fixed inset-0 z-10 flex items-center justify-center bg-gray-900 bg-opacity-80">
             <div @click.away="open = false" class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                 <h2 class="mb-4 text-lg font-semibold">Job applicant</h2>
                 <form method="POST" enctype="multipart/form-data" action="{{ route('applicant.store', $job->id) }}">
