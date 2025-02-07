@@ -10,7 +10,7 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @endsection
     <main class="container p-4 mx-auto mt-4">
-        <div class="flex justify-between items-start gap-4">
+        <div class="flex items-start justify-between gap-4">
             <section class="flex-1">
                 <div class="p-3 bg-white rounded-lg shadow-md">
                     <div class="flex items-center justify-between">
@@ -49,7 +49,7 @@
                             <li class="mb-2">
                                 <strong>Salary:</strong> ${{ number_format($job->salary) }}
                             </li>
-                            <li id="site-location" data-site="{{ "$job->state, $job->city, $job->address" }}"
+                            <li id="site-location" data-state="{{ $job->state }}" data-city="{{ $job->city }}" data-address="{{ $job->address }}"
                                 class="mb-2">
                                 <strong>Site Location:</strong> {{ $job->state }}, {{ $job->city }}
                             </li>
@@ -101,7 +101,7 @@
             </section>
 
             <!-- Sidebar -->
-            <aside class="p-3 basis-96 bg-white rounded-lg shadow-md">
+            <aside class="p-3 bg-white rounded-lg shadow-md basis-96">
                 <h3 class="mb-4 text-xl font-bold text-center">
                     Company Info
                 </h3>
@@ -147,7 +147,6 @@
 <script>
     document.addEventListener('DOMContentLoaded', async () => {
         async function getLatLon(address) {
-            console.log(address, 'address');
             const url =
                 `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
 
@@ -160,7 +159,6 @@
                 const data = await response.json();
 
                 if (data.length > 0) {
-                    console.log(`Latitude: ${data[0].lat}, Longitude: ${data[0].lon}`);
                     return {
                         lat: data[0].lat,
                         lon: data[0].lon
@@ -175,8 +173,10 @@
         }
 
         const site_location = document.getElementById('site-location');
-        const address = site_location.dataset.site;
-        // Example Usage
+        const state = site_location.dataset.state;
+        const city = site_location.dataset.city;
+        let address = site_location.dataset.address;
+        const full_address = `${state} ${city} ${address}`;
         const lat_long = await getLatLon(address);
         const coords = [lat_long.lat, lat_long.lon];
         setTimeout(() => {
