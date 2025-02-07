@@ -10,8 +10,8 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @endsection
     <main class="container p-4 mx-auto mt-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <section class="md:col-span-3">
+        <div class="flex justify-between items-start gap-4">
+            <section class="flex-1">
                 <div class="p-3 bg-white rounded-lg shadow-md">
                     <div class="flex items-center justify-between">
                         <a class="block p-4 text-blue-700" href="{{ route('jobs.index') }}">
@@ -96,12 +96,12 @@
                 @endauth
 
                 <div class="p-6 mt-6 bg-white rounded-lg shadow-md">
-                    <div id="map" class="h-96"></div>
+                    <div id="map" class="h-[600px]"></div>
                 </div>
             </section>
 
             <!-- Sidebar -->
-            <aside class="p-3 bg-white rounded-lg shadow-md">
+            <aside class="p-3 basis-96 bg-white rounded-lg shadow-md">
                 <h3 class="mb-4 text-xl font-bold text-center">
                     Company Info
                 </h3>
@@ -180,7 +180,7 @@
         const lat_long = await getLatLon(address);
         const coords = [lat_long.lat, lat_long.lon];
         setTimeout(() => {
-            let map = L.map("map").setView(coords, 15);
+            let map = L.map("map").setView(coords, 16);
 
             L.marker(coords)
                 .bindTooltip(address, {
