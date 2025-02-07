@@ -1,4 +1,14 @@
 <x-layout>
+    @section('styles')
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
+            integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @endsection
+    @section('scripts')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"
+            integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @endsection
     <main class="container p-4 mx-auto mt-4">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
             <section class="md:col-span-3">
@@ -137,6 +147,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', async () => {
         async function getLatLon(address) {
+            console.log(address, 'address');
             const url =
                 `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
 
@@ -167,10 +178,21 @@
         const address = site_location.dataset.site;
         // Example Usage
         const lat_long = await getLatLon(address);
-        // const coords = [lat_long.lat, lat_long.lwn];
+        const coords = [lat_long.lat, lat_long.lon];
         setTimeout(() => {
-            const coords = [47.04265335158824, 28.859066955048156];
-            let map = L.map("map").setView(coords, 19);
+            let map = L.map("map").setView(coords, 15);
+
+            L.marker(coords)
+                .bindTooltip(address, {
+                    direction: "right",
+                    offset: [-10, -30],
+                    permanent: false,
+                })
+                .addTo(map);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                maxZoom: 24,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            }).addTo(map);
         }, 1000);
 
     })
