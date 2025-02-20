@@ -1,5 +1,5 @@
 <x-layout>
-    <form action="{{ route('file.upload') }}" method="get" enctype="multipart/form-data" class="w-full max-w-sm mx-auto">
+    <form action="{{ route('file.store') }}" method="post" enctype="multipart/form-data" class="w-full max-w-sm mx-auto">
         @csrf
         <div class="flex items-center border-b border-b-2 border-teal-500 py-2">
             <input type="file" name="file" class="appearance" id="file" required>

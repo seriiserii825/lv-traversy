@@ -32,3 +32,4 @@ Route::group(['middleware' => 'guest'], function () {
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/file-upload', [FileUploadController::class, 'index'])->name('file.upload');
+Route::post('/file-upload', [FileUploadController::class, 'store'])->name('file.store');
