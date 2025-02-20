@@ -4,6 +4,7 @@ use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobListingsController;
 use App\Http\Controllers\ProfileController;
@@ -29,3 +30,5 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/register', [AuthController::class, 'registerStore'])->name('register.store');
 });
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/file-upload', [FileUploadController::class, 'index'])->name('file.upload');
