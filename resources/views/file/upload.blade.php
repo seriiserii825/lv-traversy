@@ -10,7 +10,7 @@
     <div class="flex gap-3">
         @forelse($files as $file)
             <div>
-                <img src="/storage/{{ $file->file_path }}" alt="" />
+                <img src="/uploads/{{ $file->file_path }}" alt="" />
             </div>
         @empty
             <p>No files uploaded</p>
