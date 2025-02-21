@@ -33,3 +33,4 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/file-upload', [FileUploadController::class, 'index'])->name('file.upload');
 Route::post('/file-upload', [FileUploadController::class, 'store'])->name('file.store');
+Route::delete('/file-upload/{id}', [FileUploadController::class, 'destroy'])->name('file.destroy');
