@@ -5,6 +5,7 @@ use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\front\PdfControllerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobListingsController;
 use App\Http\Controllers\ProfileController;
@@ -34,3 +35,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/file-upload', [FileUploadController::class, 'index'])->name('file.upload');
 Route::post('/file-upload', [FileUploadController::class, 'store'])->name('file.store');
 Route::delete('/file-upload/{id}', [FileUploadController::class, 'destroy'])->name('file.destroy');
+
+
+Route::get('/pdf-preview', [PdfControllerController::class, 'preview']);
+Route::get('/pdf', [PdfControllerController::class, 'generate']);
+
