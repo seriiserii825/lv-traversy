@@ -1,47 +1,56 @@
 FROM php:8-fpm
 
-# Ensure /bin/sh exists
-RUN apt-get update && apt-get install -y bash
-
-COPY composer.lock composer.json /var/www/
-
-WORKDIR /var/www
-
-RUN apt update && apt install -y \
+# Install system dependencies for PHP and Puppeteer
+RUN apt-get update && apt-get install -y \
+    bash curl wget gnupg \
     build-essential \
     libzip-dev \
     libpng-dev \
     libjpeg62-turbo-dev \
-    libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
-    libfreetype6 \
+    libwebp-dev libxpm-dev \
     libfreetype6-dev \
-    locales \
-    zip \
-    unzip
+    zip unzip \
+    ca-certificates \
+    fonts-liberation libappindicator3-1 libasound2 \
+    libatk-bridge2.0-0 libatk1.0-0 libcups2 \
+    libdbus-1-3 libgdk-pixbuf2.0-0 libnspr4 \
+    libnss3 libx11-xcb1 libxcomposite1 libxdamage1 \
+    libxrandr2 xdg-utils libxss1 libxtst6 libglib2.0-0 \
+    chromium \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install extensions
+# Install PHP extensions
 RUN docker-php-ext-install pdo_mysql zip exif pcntl
 
-# Install composer
+# Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Add user for laravel application
-RUN groupadd -g 1000 www
+# Install Node.js 20.x
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g npm
 
-RUN useradd -u 1000 -ms /bin/bash -g www www
+# Set working directory
+WORKDIR /var/www
 
-# Copy existing application directory contents
-COPY . /var/www
+# Copy app files
+COPY . .
 
-# Copy existing application directory permissions
-COPY --chown=www:www . /var/www
+# Install Puppeteer (downloads Chromium locally)
+# RUN npm install puppeteer
+# Install Puppeteer and download compatible Chromium
+RUN npm install puppeteer && \
+    npx puppeteer browsers install chrome
 
-# Change current user to www
+# Add non-root user
+RUN groupadd -g 1000 www && \
+    useradd -u 1000 -ms /bin/bash -g www www && \
+    chown -R www:www /var/www
+
+# Switch to non-root
 USER www
 
-# Expose port 9000 and start php-fpm server
+# Expose PHP-FPM port
 EXPOSE 9000
 
 CMD ["php-fpm"]

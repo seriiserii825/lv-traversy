@@ -1,24 +1,23 @@
-const puppeteer = require('puppeteer');
-import puppeteer from 'puppeteer-core';
-const fs = require('fs');
+import puppeteer from "puppeteer";
+import { readFile } from "fs/promises";
 
-(async () => {
-  const html = fs.readFileSync(process.argv[2], 'utf8'); // read HTML path from CLI
-  const outputPath = process.argv[3]; // output path
+const [,, inputPath, outputPath] = process.argv;
 
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
+const html = await readFile(inputPath, "utf-8");
 
-  const page = await browser.newPage();
-  await page.setContent(html, { waitUntil: 'load' });
+const browser = await puppeteer.launch({
+  headless: "new",
+  executablePath: puppeteer.executablePath(), // ensures correct Chromium
+  args: ["--no-sandbox", "--disable-setuid-sandbox"]
+});
 
-  await page.pdf({
-    path: outputPath,
-    format: 'A4',
-    printBackground: true,
-  });
+const page = await browser.newPage();
+await page.setContent(html, { waitUntil: "networkidle0" });
 
-  await browser.close();
-})();
+await page.pdf({
+  path: outputPath,
+  format: "A4",
+  printBackground: true
+});
+
+await browser.close();
